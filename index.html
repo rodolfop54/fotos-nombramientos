@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Fotos · Nombramientos 2027</title>
+  <meta name="description" content="Progreso en vivo de las fotos de nombramientos 2027 — Iglesia Sabanagrande Central.">
+  <meta name="theme-color" content="#f7f6f9" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#111013" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23f2463b'/%3E%3Cpath d='m10 16.5 4 4 8-9' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=3">
+</head>
+<body data-view="loading">
+  <div class="splash" aria-hidden="true"><span class="spinner"></span></div>
+
+  <section class="login" aria-labelledby="loginTitle">
+    <form class="login-card" id="loginForm" novalidate>
+      <span class="login-mark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="m10 16.5 4 4 8-9"/></svg></span>
+      <h1 class="login-title" id="loginTitle">Fotos</h1>
+      <p class="login-sub">Nombramientos 2027 · Iglesia Sabanagrande Central</p>
+
+      <label class="field">
+        <span>Usuario</span>
+        <input id="user" name="username" autocomplete="username" autocapitalize="none" autocorrect="off" spellcheck="false" required>
+      </label>
+      <label class="field">
+        <span>Contraseña</span>
+        <span class="field-pass">
+          <input id="pass" name="password" type="password" autocomplete="current-password" required>
+          <button class="eye" id="eye" type="button" aria-label="Mostrar contraseña" aria-pressed="false">
+            <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2.5 10s2.7-5 7.5-5 7.5 5 7.5 5-2.7 5-7.5 5-7.5-5-7.5-5z"/><circle cx="10" cy="10" r="2.3"/></svg>
+          </button>
+        </span>
+      </label>
+      <p class="login-error" id="loginError" role="alert"></p>
+      <button class="login-btn" id="loginBtn" type="submit"><span>Entrar</span></button>
+    </form>
+  </section>
+
+  <div class="page">
+    <header class="top">
+      <span class="pill status" id="status" data-state="connecting">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span class="status-label">Conectando</span>
+      </span>
+      <div class="top-actions">
+        <button class="icon-btn" id="copyPend" type="button" aria-label="Copiar lista de pendientes" title="Copiar pendientes">
+          <svg viewBox="0 0 20 20" aria-hidden="true"><rect x="6.5" y="6.5" width="9" height="10" rx="2.2"/><path d="M13.5 6.5V5.2a1.7 1.7 0 0 0-1.7-1.7H6.2a1.7 1.7 0 0 0-1.7 1.7v7.6a1.7 1.7 0 0 0 1.7 1.7h.3"/></svg>
+        </button>
+        <button class="icon-btn" id="logout" type="button" aria-label="Cerrar sesión" title="Cerrar sesión">
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M8 4.5H5.7a1.7 1.7 0 0 0-1.7 1.7v7.6a1.7 1.7 0 0 0 1.7 1.7H8M12 13.5l3.5-3.5L12 6.5M15.5 10H8"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <h1 class="title">Fotos</h1>
+    <p class="subtitle">Nombramientos 2027 · Iglesia Sabanagrande Central</p>
+
+    <section class="card" aria-label="Progreso">
+      <div class="ring" id="ring">
+        <svg viewBox="0 0 120 120" aria-hidden="true">
+          <circle class="ring-track" cx="60" cy="60" r="52"/>
+          <circle class="ring-fill" id="ringFill" cx="60" cy="60" r="52"/>
+        </svg>
+        <div class="ring-label" aria-live="polite">
+          <span class="ring-num" id="countNum">0</span>
+          <span class="ring-of">de <span id="countTotal">86</span></span>
+        </div>
+      </div>
+      <div class="card-body">
+        <p class="card-big" id="factLeft">Faltan 86</p>
+        <p class="card-meta" id="factPct">0% completado</p>
+        <p class="card-last" id="factLast"></p>
+      </div>
+    </section>
+
+    <nav class="chips" id="chips" role="tablist" aria-label="Filtro">
+      <button class="chip" role="tab" data-f="pend" aria-selected="true">Pendientes <span id="nPend">86</span></button>
+      <button class="chip" role="tab" data-f="done" aria-selected="false">Tomadas <span id="nDone">0</span></button>
+      <button class="chip" role="tab" data-f="all" aria-selected="false">Todas <span>86</span></button>
+    </nav>
+
+    <main>
+      <ol class="list" id="list"></ol>
+      <div class="empty" id="empty" hidden>
+        <span class="empty-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m7 12.5 3.2 3.2L17 9"/></svg></span>
+        <p id="emptyText"></p>
+      </div>
+
+      <details class="others" id="others">
+        <summary>
+          <svg class="chev" viewBox="0 0 12 12" aria-hidden="true"><path d="M4.5 3 7.5 6l-3 3"/></svg>
+          <span>No necesitan foto</span>
+          <span class="others-n" id="nOthers">17</span>
+        </summary>
+        <p class="others-note">Solo aparecen como integrantes, colaboradores, maestros, voces o instrumentistas, sin cargo principal.</p>
+        <ul class="others-list" id="othersList"></ul>
+      </details>
+    </main>
+  </div>
+
+  <div class="dock">
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden>
+      <span class="toast-msg" id="toastMsg"></span>
+      <button class="toast-btn" id="toastUndo" type="button">Deshacer</button>
+    </div>
+    <label class="search" id="search">
+      <svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="9" cy="9" r="5.5"/><path d="m13.2 13.2 3.3 3.3"/></svg>
+      <input id="q" type="search" placeholder="Buscar" autocomplete="off" spellcheck="false" enterkeyhint="search" aria-label="Buscar nombre">
+      <button class="search-clear" id="qClear" type="button" aria-label="Borrar búsqueda">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="m6.5 6.5 7 7m0-7-7 7"/></svg>
+      </button>
+    </label>
+  </div>
+
+  <script type="module" src="app.js?v=3"></script>
+</body>
+</html>
