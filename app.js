@@ -1,4 +1,4 @@
-import { firebaseConfig, USER_DOMAIN } from "./config.js?v=3";
+import { firebaseConfig, USER_DOMAIN } from "./config.js?v=4";
 
 const V = "10.14.1";
 const [{ initializeApp }, db, auth] = await Promise.all([
@@ -355,3 +355,43 @@ function setStatus(s, label) {
   el.dataset.state = s;
   el.querySelector(".status-label").textContent = label;
 }
+
+/* ───────────── Tema claro / oscuro ───────────── */
+
+function syncThemeButtons() {
+  const dark = document.documentElement.dataset.theme === "dark";
+  document.querySelectorAll(".theme-btn").forEach((b) =>
+    b.setAttribute("aria-label", dark ? "Cambiar a modo claro" : "Cambiar a modo oscuro"));
+  document.querySelector("meta[name=theme-color]").content = dark ? "#111013" : "#f7f6f9";
+}
+
+function setTheme(next, origin) {
+  const apply = () => {
+    document.documentElement.dataset.theme = next;
+    localStorage.setItem("tema", next);
+    syncThemeButtons();
+  };
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!document.startViewTransition || reduce || !origin) return apply();
+  // Revela el nuevo tema en un círculo que crece desde el botón
+  const r = origin.getBoundingClientRect();
+  const x = r.left + r.width / 2, y = r.top + r.height / 2;
+  const s = document.documentElement.style;
+  s.setProperty("--vt-x", `${x}px`);
+  s.setProperty("--vt-y", `${y}px`);
+  s.setProperty("--vt-r", `${Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y))}px`);
+  document.startViewTransition(apply);
+}
+
+document.querySelectorAll(".theme-btn").forEach((b) =>
+  b.addEventListener("click", () =>
+    setTheme(document.documentElement.dataset.theme === "dark" ? "light" : "dark", b)));
+syncThemeButtons();
+
+// Si nunca eligió tema a mano, sigue al sistema
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
+  if (!localStorage.getItem("tema")) {
+    document.documentElement.dataset.theme = e.matches ? "dark" : "light";
+    syncThemeButtons();
+  }
+});

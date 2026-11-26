@@ -20,8 +20,8 @@
 
   color-scheme: light;
 }
-@media (prefers-color-scheme: dark) {
-  :root {
+/* El tema lo fija un script en <head> (preferencia guardada o la del sistema). */
+:root[data-theme="dark"] {
     --bg: #111013;
     --surface: #1b1a1f;
     --fill: #232228;
@@ -36,7 +36,6 @@
     --live: #3ccf7a;
     --shadow: 0 0 0 1px #24232a, 0 12px 32px -16px rgb(0 0 0 / 0.6);
     color-scheme: dark;
-  }
 }
 
 /* ——— Base ——— */
@@ -402,4 +401,22 @@ body:not([data-view="loading"]) .splash { display: none; }
 @keyframes shake {
   20% { transform: translateX(-8px); } 40% { transform: translateX(7px); }
   60% { transform: translateX(-4px); } 80% { transform: translateX(2px); }
+}
+
+/* ——— Cambio de tema ——— */
+.theme-btn svg { transition: transform 420ms var(--spring), opacity 200ms var(--ease-out); }
+.theme-btn .sun, .theme-btn .moon { position: absolute; }
+.theme-btn { position: relative; }
+:root[data-theme="dark"] .theme-btn .moon,
+:root:not([data-theme="dark"]) .theme-btn .sun { opacity: 0; transform: rotate(-90deg) scale(0.5); }
+.login .theme-btn {
+  position: fixed;
+  top: max(16px, env(safe-area-inset-top)); right: 20px;
+}
+
+::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+::view-transition-new(root) { animation: reveal 520ms var(--ease-out); }
+@keyframes reveal {
+  from { clip-path: circle(0 at var(--vt-x, 100%) var(--vt-y, 0)); }
+  to { clip-path: circle(var(--vt-r, 150vmax) at var(--vt-x, 100%) var(--vt-y, 0)); }
 }

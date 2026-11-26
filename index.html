@@ -5,18 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Fotos · Nombramientos 2027</title>
   <meta name="description" content="Progreso en vivo de las fotos de nombramientos 2027 — Iglesia Sabanagrande Central.">
-  <meta name="theme-color" content="#f7f6f9" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#111013" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f7f6f9">
+  <script>
+    (function () {
+      var t = localStorage.getItem("tema") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+      document.documentElement.dataset.theme = t;
+      document.querySelector("meta[name=theme-color]").content = t === "dark" ? "#111013" : "#f7f6f9";
+    })();
+  </script>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%23f2463b'/%3E%3Cpath d='m10 16.5 4 4 8-9' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=3">
+  <link rel="stylesheet" href="styles.css?v=4">
 </head>
 <body data-view="loading">
   <div class="splash" aria-hidden="true"><span class="spinner"></span></div>
 
   <section class="login" aria-labelledby="loginTitle">
+    <button class="icon-btn theme-btn" type="button" aria-label="Cambiar a modo oscuro" title="Cambiar tema"><svg class="moon" viewBox="0 0 20 20" aria-hidden="true"><path d="M16 12.2A6.5 6.5 0 0 1 7.8 4a6.5 6.5 0 1 0 8.2 8.2z"/></svg><svg class="sun" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="3.3"/><path d="M10 2.5v1.6M10 15.9v1.6M2.5 10h1.6M15.9 10h1.6M4.7 4.7l1.1 1.1M14.2 14.2l1.1 1.1M4.7 15.3l1.1-1.1M14.2 5.8l1.1-1.1"/></svg></button>
     <form class="login-card" id="loginForm" novalidate>
       <span class="login-mark" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="m10 16.5 4 4 8-9"/></svg></span>
       <h1 class="login-title" id="loginTitle">Fotos</h1>
@@ -47,6 +54,7 @@
         <span class="status-label">Conectando</span>
       </span>
       <div class="top-actions">
+        <button class="icon-btn theme-btn" type="button" aria-label="Cambiar a modo oscuro" title="Cambiar tema"><svg class="moon" viewBox="0 0 20 20" aria-hidden="true"><path d="M16 12.2A6.5 6.5 0 0 1 7.8 4a6.5 6.5 0 1 0 8.2 8.2z"/></svg><svg class="sun" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="3.3"/><path d="M10 2.5v1.6M10 15.9v1.6M2.5 10h1.6M15.9 10h1.6M4.7 4.7l1.1 1.1M14.2 14.2l1.1 1.1M4.7 15.3l1.1-1.1M14.2 5.8l1.1-1.1"/></svg></button>
         <button class="icon-btn" id="copyPend" type="button" aria-label="Copiar lista de pendientes" title="Copiar pendientes">
           <svg viewBox="0 0 20 20" aria-hidden="true"><rect x="6.5" y="6.5" width="9" height="10" rx="2.2"/><path d="M13.5 6.5V5.2a1.7 1.7 0 0 0-1.7-1.7H6.2a1.7 1.7 0 0 0-1.7 1.7v7.6a1.7 1.7 0 0 0 1.7 1.7h.3"/></svg>
         </button>
@@ -116,6 +124,6 @@
     </label>
   </div>
 
-  <script type="module" src="app.js?v=3"></script>
+  <script type="module" src="app.js?v=4"></script>
 </body>
 </html>
