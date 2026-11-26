@@ -22,7 +22,7 @@ leer después de iniciar sesión.
 4. **Realtime Database → Datos → ⋮ → Importar JSON**: sube `personas.json` (se genera aparte, no se sube al repo).
 5. **Realtime Database → Reglas**: pega `database.rules.json` → **Publicar**.
 
-En la página se entra con usuario `fotos` y la contraseña del paso 2.
+En la página se entra con usuario `decom` y la contraseña del paso 2.
 
 ## Reiniciar el conteo
 

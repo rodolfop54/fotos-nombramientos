@@ -1,4 +1,4 @@
-import { firebaseConfig, USER_DOMAIN } from "./config.js?v=5";
+import { firebaseConfig, USERS } from "./config.js?v=6";
 
 const V = "10.14.1";
 const [{ initializeApp }, db, auth] = await Promise.all([
@@ -22,7 +22,7 @@ const loginBtn = $("#loginBtn");
 
 const toEmail = (u) => {
   u = u.trim().toLowerCase();
-  return u.includes("@") ? u : `${u}@${USER_DOMAIN}`;
+  return USERS[u] || u;
 };
 
 form.addEventListener("submit", async (e) => {
