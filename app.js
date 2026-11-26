@@ -1,4 +1,4 @@
-import { firebaseConfig, USER_DOMAIN } from "./config.js?v=4";
+import { firebaseConfig, USER_DOMAIN } from "./config.js?v=5";
 
 const V = "10.14.1";
 const [{ initializeApp }, db, auth] = await Promise.all([

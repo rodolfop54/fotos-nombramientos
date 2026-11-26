@@ -3,12 +3,12 @@
     ".read": false,
     ".write": false,
     "personas": {
-      ".read": "auth != null && auth.token.email == 'equipo@nombramientos.local'"
+      ".read": "auth != null && auth.token.email == 'fotos@decom.local'"
     },
     "fotos": {
-      ".read": "auth != null && auth.token.email == 'equipo@nombramientos.local'",
+      ".read": "auth != null && auth.token.email == 'fotos@decom.local'",
       "$id": {
-        ".write": "auth != null && auth.token.email == 'equipo@nombramientos.local' && $id.matches(/^([1-9]|[1-9][0-9]|10[0-3])$/)",
+        ".write": "auth != null && auth.token.email == 'fotos@decom.local' && $id.matches(/^([1-9]|[1-9][0-9]|10[0-3])$/)",
         ".validate": "newData.hasChildren(['t']) && newData.child('t').val() == now",
         "t": { ".validate": true },
         "$other": { ".validate": false }

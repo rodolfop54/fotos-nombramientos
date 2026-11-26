@@ -15,6 +15,6 @@ export const firebaseConfig = {
   appId: "1:148953482924:web:400b46ea6c7a5b37ad8109",
 };
 
-// Al iniciar sesión se escribe solo el usuario (por ejemplo "equipo");
+// Al iniciar sesión se escribe solo el usuario (por ejemplo "fotos");
 // la página le agrega este dominio para formar el correo que usa Firebase.
-export const USER_DOMAIN = "nombramientos.local";
+export const USER_DOMAIN = "decom.local";

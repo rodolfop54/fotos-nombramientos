@@ -16,13 +16,13 @@ leer después de iniciar sesión.
 
 1. **Authentication → Comenzar → Correo electrónico/contraseña → Habilitar → Guardar.**
 2. **Authentication → Usuarios → Agregar usuario**
-   - Correo: `equipo@nombramientos.local`
+   - Correo: `fotos@decom.local`
    - Contraseña: la que quieras compartir con el equipo (mínimo 6 caracteres).
 3. **Authentication → Configuración → Acciones del usuario**: desmarca *Habilitar creación (registro)*.
 4. **Realtime Database → Datos → ⋮ → Importar JSON**: sube `personas.json` (se genera aparte, no se sube al repo).
 5. **Realtime Database → Reglas**: pega `database.rules.json` → **Publicar**.
 
-En la página se entra con usuario `equipo` y la contraseña del paso 2.
+En la página se entra con usuario `fotos` y la contraseña del paso 2.
 
 ## Reiniciar el conteo
 
